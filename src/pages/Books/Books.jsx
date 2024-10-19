@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookItems from "../../components/BookItems/BookItems";
+import BookList from "../../components/BooksList/BookList";
 import SearchByCategory from "../../components/SearchByCategory/SearchByCategory";
 import SearchByInput from "../../components/SearchByInput/SearchByInput";
 import Footer from "../../shared/Footer/Footer";
@@ -13,6 +13,7 @@ const Books = () => {
     setFirst(event.first);
     setRows(event.rows);
   };
+
   return (
     <>
       <div className="wrapper">
@@ -33,7 +34,7 @@ const Books = () => {
         {/* --- book search result end --- */}
 
         {/* --- book items start --- */}
-        <BookItems />
+        <BookList />
         {/* --- book items end --- */}
 
         {/* --- pagination --- */}

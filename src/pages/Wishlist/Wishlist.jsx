@@ -1,4 +1,4 @@
-import BookItems from "../../components/BookItems/BookItems";
+import BookItems from "../../components/BooksList/BookList";
 
 const Wishlist = () => {
   return (
