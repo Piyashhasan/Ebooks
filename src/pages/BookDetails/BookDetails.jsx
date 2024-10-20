@@ -1,3 +1,4 @@
+import Loading from "../../shared/Loading/Loading";
 import { useParams } from "react-router-dom";
 import { useGetSingleBookQuery } from "../../services/booksApi";
 
@@ -6,12 +7,12 @@ const BookDetails = () => {
   const { data, error, isLoading } = useGetSingleBookQuery(id);
 
   if (isLoading) {
-    return <p className="text-center text-[20px]">Loading .....</p>;
+    return <Loading />;
   }
 
   if (error) {
     return (
-      <p className="text-center text-[20px]">
+      <p className="text-center text-[20px] text-red-400 mt-[100px]">
         Error, Please reload this page .....
       </p>
     );

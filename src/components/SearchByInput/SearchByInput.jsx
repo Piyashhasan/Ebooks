@@ -1,13 +1,65 @@
-const SearchByInput = () => {
+import { memo, useEffect, useState } from "react";
+import { useSearchBooksQuery } from "../../services/booksApi";
+import { useDispatch } from "react-redux";
+import { allBooks } from "../../features/books/bookSlice";
+
+const SearchByInput = ({ setSearchStatus }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const [trimText, setTrimText] = useState("");
+  const [triggerSearch, setTriggerSearch] = useState(false);
+
+  // --- fetch search books ---
+  const { data, error, isLoading } = useSearchBooksQuery(trimText, {
+    skip: !triggerSearch,
+  });
+
+  // --- dispatch action ---
+  const dispatch = useDispatch();
+
+  // --- form submit handler ---
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = searchInput
+      .toLocaleLowerCase()
+      .trim()
+      .replace(/\s+/g, " ");
+
+    if (searchInput) {
+      setTrimText(searchText);
+      setTriggerSearch(true);
+    }
+  };
+
+  // --- manage state + loading + error state ---
+  useEffect(() => {
+    if (data) {
+      dispatch(allBooks(data));
+      setSearchInput("");
+      setTriggerSearch(false);
+      setSearchStatus({ loading: false, error: false });
+    }
+    if (isLoading) {
+      setSearchStatus((prev) => ({ ...prev, loading: true }));
+    }
+    if (error) {
+      setSearchStatus((prev) => ({ ...prev, error: true }));
+    }
+  }, [data, dispatch, setSearchStatus, isLoading, error]);
+
   return (
-    <form action="">
+    <form onSubmit={handleSearch}>
       <div className="flex items-center justify-between">
         <input
           className="py-3 px-10 outline-none border w-full"
           type="text"
           placeholder="Search Books"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
-        <button className="bg-[#2FCD71] text-white py-[13px] px-14 hover:bg-green-600">
+        <button
+          type="submit"
+          className="bg-[#2FCD71] text-white py-[13px] px-14 hover:bg-green-600"
+        >
           Search
         </button>
       </div>
@@ -15,4 +67,4 @@ const SearchByInput = () => {
   );
 };
 
-export default SearchByInput;
+export default memo(SearchByInput);
