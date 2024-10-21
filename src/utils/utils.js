@@ -7,6 +7,7 @@ export const truncateText = (title, wordLimit) => {
     : title;
 };
 
+// --- category ---
 export const filterByTopic = [
   {
     name: "All",

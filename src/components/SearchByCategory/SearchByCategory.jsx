@@ -5,13 +5,15 @@ import { useDispatch } from "react-redux";
 import { allBooks } from "../../features/books/bookSlice";
 
 const SearchByCategory = ({ setTopicStatus }) => {
+  // --- dropdown btn state ---
   const [selectedTopic, setSelectedTopic] = useState("");
 
+  // --- fetch data based on dropdown category from rtk query ---
   const { data, error, isLoading } = useSearchByTopicQuery(selectedTopic, {
     skip: !selectedTopic,
   });
 
-  // --- action dispatch ---
+  // --- dispatch ---
   const dispatch = useDispatch();
 
   // --- manage state + loading + error state ---

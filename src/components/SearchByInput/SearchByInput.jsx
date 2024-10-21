@@ -8,12 +8,12 @@ const SearchByInput = ({ setSearchStatus }) => {
   const [trimText, setTrimText] = useState("");
   const [triggerSearch, setTriggerSearch] = useState(false);
 
-  // --- fetch search books ---
+  // --- fetch books based on search input from rtk query ---
   const { data, error, isLoading } = useSearchBooksQuery(trimText, {
     skip: !triggerSearch,
   });
 
-  // --- dispatch action ---
+  // --- dispatch ---
   const dispatch = useDispatch();
 
   // --- form submit handler ---

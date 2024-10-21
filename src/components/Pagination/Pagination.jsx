@@ -2,9 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../features/books/bookSlice";
 
 const Pagination = ({ fetchBooks, isFetching }) => {
+  // --- store call ---
   const { pagination } = useSelector((state) => state.books);
+
+  // --- dispatch ---
   const dispatch = useDispatch();
 
+  // --- next button handler ---
   const handleNext = () => {
     if (pagination.next) {
       fetchBooks(pagination.next);
@@ -12,6 +16,7 @@ const Pagination = ({ fetchBooks, isFetching }) => {
     }
   };
 
+  // --- previous button handler ---
   const handlePrevious = () => {
     if (pagination.previous) {
       fetchBooks(pagination.previous);

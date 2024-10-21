@@ -9,13 +9,13 @@ import { useDispatch } from "react-redux";
 import { allBooks } from "../../features/books/bookSlice";
 
 const Books = () => {
-  // --- search by using input status ---
+  // --- (input field filter) status ---
   const [searchStatus, setSearchStatus] = useState({
     loading: false,
     error: false,
   });
 
-  // --- search by topic status ---
+  // --- (category filter) status ---
   const [topicStatus, setTopicStatus] = useState({
     loading: false,
     error: false,
@@ -25,14 +25,17 @@ const Books = () => {
   const [currentUrl, setCurrentUrl] = useState(null);
   const { data, error, isFetching } = useGetAllBooksQuery(currentUrl);
 
+  // --- dispatch ---
   const dispatch = useDispatch();
 
+  // --- data dispatch to store ---
   useEffect(() => {
     if (data) {
       dispatch(allBooks(data));
     }
   }, [data, dispatch]);
 
+  // --- set url based on pagination (next preview) button
   const fetchBooks = (url) => {
     setCurrentUrl(url);
   };

@@ -6,6 +6,7 @@ import { memo, useEffect, useState } from "react";
 const BookItem = ({ book }) => {
   const [isWishlist, setWishList] = useState(false);
 
+  // --- wishlist book get from localStorage ---
   useEffect(() => {
     const wishListBooks =
       JSON.parse(localStorage.getItem("wishListBooks")) || [];
@@ -14,7 +15,8 @@ const BookItem = ({ book }) => {
     }
   }, [book?.id]);
 
-  const toggleLike = () => {
+  // --- toggle wishList icon ---
+  const toggleWishList = () => {
     const wishListBooks =
       JSON.parse(localStorage.getItem("wishListBooks")) || [];
 
@@ -56,7 +58,7 @@ const BookItem = ({ book }) => {
           <Link to={book?.formats?.["application/octet-stream"]}>
             <FaDownload className="text-[22px] text-green-500" />
           </Link>
-          <button onClick={toggleLike}>
+          <button onClick={toggleWishList}>
             {isWishlist ? (
               <FaHeart className="text-[22px] text-red-500" />
             ) : (

@@ -28,7 +28,8 @@ export const bookSlice = createSlice({
   },
 });
 
-// --- action ---
+// --- action export ---
 export const { allBooks, setCurrentPage } = bookSlice.actions;
 
+// --- export reducer ---
 export default bookSlice.reducer;

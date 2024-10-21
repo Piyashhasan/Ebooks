@@ -6,21 +6,23 @@ import WishlistSkeleton from "../../shared/Skeleton/WishlistSkeleton";
 const Wishlist = () => {
   const [wishListBooks, setWishListBooks] = useState([]);
 
-  // --- Fetch data from localStorage ---
+  // --- get data from localStorage ---
   useEffect(() => {
     const books = JSON.parse(localStorage.getItem("wishListBooks")) || [];
     setWishListBooks(books);
   }, []);
 
-  // Fetch data from API
+  // --- Fetch data from API --
   const { data, error, isLoading } = useGetBooksByIdsQuery(wishListBooks, {
     skip: wishListBooks.length === 0,
   });
 
+  // --- loading state manage ---
   if (isLoading) {
     return <WishlistSkeleton />;
   }
 
+  // --- error state manage ---
   if (error) {
     return (
       <p className="text-center text-[20px] text-red-500 my-48">

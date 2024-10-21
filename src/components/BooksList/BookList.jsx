@@ -7,10 +7,12 @@ const BookList = ({ searchStatus, topicStatus, isLoading, error }) => {
   // --- book get from store ---
   const { books } = useSelector((state) => state.books);
 
+  // --- loading state handle ---
   if (isLoading || searchStatus.loading || topicStatus.loading) {
     return <BookListSkeleton />;
   }
 
+  // --- error state handle ---
   if (error || searchStatus.error || topicStatus.error) {
     return (
       <p className="text-center text-[20px] text-red-500 my-48">

@@ -4,13 +4,18 @@ import { useGetSingleBookQuery } from "../../services/booksApi";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 const BookDetails = () => {
+  // --- id extract from url ---
   const { id } = useParams();
+
+  // --- fetch single book description from rtk query ---
   const { data, error, isLoading } = useGetSingleBookQuery(id);
 
+  // --- loading state manage ---
   if (isLoading) {
     return <Loading />;
   }
 
+  // --- manage error state ---
   if (error) {
     return (
       <p className="text-center text-[20px] text-red-400 mt-[100px]">
