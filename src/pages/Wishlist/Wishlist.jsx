@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import BookItems from "../../components/BookItem/BookItem";
 import { useGetBooksByIdsQuery } from "../../services/booksApi";
+import Footer from "../../shared/Footer/Footer";
 
 const Wishlist = () => {
   const [wishListBooks, setWishListBooks] = useState([]);
@@ -25,15 +26,20 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="wrapper">
-      <div className="my-10">
-        <div className="grid grid-cols-4 gap-5">
-          {data?.results.map((book) => (
-            <BookItems key={book?.id} book={book} />
-          ))}
+    <>
+      <div className="wrapper px-4 xl:px-0">
+        <div className="my-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {data?.results.map((book) => (
+              <BookItems key={book?.id} book={book} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      <div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

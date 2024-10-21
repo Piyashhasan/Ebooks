@@ -39,11 +39,11 @@ const Books = () => {
 
   return (
     <>
-      <div className="wrapper">
-        <div className="py-12">
+      <div className="wrapper px-4 xl:px-0">
+        <div className="pt-10 pb-5 sm:py-12">
           <div className="flex items-center justify-center">
-            <h1 className="text-[42px] text-[#374151] font-bold leading-[63px] text-center">
-              Awesome Books You <br /> Should Know
+            <h1 className="text-[32px] sm:text-[42px] text-[#374151] font-bold sm:leading-[63px] text-center">
+              Awesome Books You <br className="hidden sm:block" /> Should Know
             </h1>
           </div>
         </div>

@@ -50,7 +50,7 @@ const SearchByInput = ({ setSearchStatus }) => {
     <form onSubmit={handleSearch}>
       <div className="flex items-center justify-between">
         <input
-          className="py-3 px-10 outline-none border w-full"
+          className="py-3 px-5 sm:px-10 outline-none border w-full"
           type="text"
           placeholder="Search Books"
           value={searchInput}
@@ -58,7 +58,7 @@ const SearchByInput = ({ setSearchStatus }) => {
         />
         <button
           type="submit"
-          className="bg-[#2FCD71] text-white py-[13px] px-14 hover:bg-green-600"
+          className="bg-[#2FCD71] text-white px-5 py-[13px] sm:px-14 hover:bg-green-600"
         >
           Search
         </button>

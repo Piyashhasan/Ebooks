@@ -20,7 +20,7 @@ const Pagination = ({ fetchBooks, isFetching }) => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-5 my-5">
+    <div className="flex items-center justify-center gap-5 mt-6 mb-10">
       <button
         disabled={!pagination.previous || isFetching}
         onClick={handlePrevious}
@@ -39,7 +39,7 @@ const Pagination = ({ fetchBooks, isFetching }) => {
       <span className="font-bold">
         Page:{" "}
         <span className="text-red-500">
-          {pagination.currentPage} of {pagination.count}
+          {pagination.currentPage} of {Math.floor(pagination.count / 32)}
         </span>
       </span>
       <button

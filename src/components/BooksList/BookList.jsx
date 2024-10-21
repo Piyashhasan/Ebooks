@@ -18,8 +18,8 @@ const BookList = ({ searchStatus, topicStatus, isLoading, error }) => {
   }
 
   return (
-    <div className="mt-20 mb-10">
-      <div className="grid grid-cols-4 gap-5">
+    <div className="my-10 sm:mt-20 sm:mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {books.map((book) => (
           <BookItem key={book?.id} book={book} />
         ))}

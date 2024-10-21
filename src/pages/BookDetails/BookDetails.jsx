@@ -20,7 +20,7 @@ const BookDetails = () => {
 
   return (
     <div className="wrapper">
-      <div className="grid grid-cols-2 gap-5 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-10 px-4 xl:px-0">
         <div className="flex justify-center">
           <img
             className="max-w-[300px] max-h-[450px] object-cover object-top"
@@ -28,8 +28,8 @@ const BookDetails = () => {
             alt="Book image"
           />
         </div>
-        <div>
-          <h2 className="text-[38px] text-[#374151] font-semibold leading-[48px]">
+        <div className="mt-5 md:mt-0">
+          <h2 className="text-[32px] sm:text-[38px] text-[#374151] font-semibold leading-[48px]">
             {data?.title}
           </h2>
           <div className="mt-3">
@@ -60,7 +60,7 @@ const BookDetails = () => {
               })}
             </ul>
           </div>
-          <div className="mt-3 mb-5">
+          <div className="mt-3 mb-8">
             <p className="text-[#374151] capitalize">
               Language: {data?.languages}
             </p>

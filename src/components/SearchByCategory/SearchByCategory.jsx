@@ -33,11 +33,11 @@ const SearchByCategory = ({ setTopicStatus }) => {
 
   return (
     <div>
-      <div className="mt-16 flex items-center justify-between">
-        <h2 className="text-[32px] text-[#374151] font-semibold leading-[48px]">
+      <div className="mt-10 flex flex-wrap items-center justify-between sm:flex-nowrap sm:mt-16">
+        <h2 className="text-[28px] sm:text-[32px] text-[#374151] font-semibold leading-[48px]">
           Showing Results
         </h2>
-        <div className="flex items-center gap-3">
+        <div className="flex justify-between items-center gap-3 w-full mt-5 sm:mt-0 sm:w-auto">
           <label>Filter by Topic:</label>
           <select
             value={selectedTopic}
