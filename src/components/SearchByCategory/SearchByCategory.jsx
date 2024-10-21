@@ -18,7 +18,6 @@ const SearchByCategory = ({ setTopicStatus }) => {
   useEffect(() => {
     if (data) {
       dispatch(allBooks(data));
-      console.log("data", data);
       setTopicStatus({ loading: false, error: false });
     }
   }, [data, dispatch, setTopicStatus]);

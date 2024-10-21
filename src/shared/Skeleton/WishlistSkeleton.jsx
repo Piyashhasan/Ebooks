@@ -1,9 +1,8 @@
 import BookItemSkeleton from "./BookItemSkeleton";
 
-const skeletonItem = JSON.parse(localStorage.getItem("wishListBooks")) || [];
+const skeletonItem = new Array(8).fill(0);
 
 const WishlistSkeleton = () => {
-  console.log("-- wishlist --", skeletonItem.length);
   return (
     <div className="wrapper px-4 xl:px-0">
       <div className="my-10">
