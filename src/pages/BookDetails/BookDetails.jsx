@@ -1,6 +1,7 @@
 import Loading from "../../shared/Loading/Loading";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetSingleBookQuery } from "../../services/booksApi";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -20,7 +21,14 @@ const BookDetails = () => {
 
   return (
     <div className="wrapper">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-10 px-4 xl:px-0">
+      <div className="my-5 px-4 xl:px-0">
+        <Link to="/books">
+          <button className="w-[40px] h-[40px] rounded-full flex items-center justify-center bg-[#2FCD71] text-white hover:bg-green-600 cursor-pointer">
+            <MdOutlineKeyboardBackspace className="text-[25px]" />
+          </button>
+        </Link>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-5 pb-10 px-4 xl:px-0">
         <div className="flex justify-center">
           <img
             className="max-w-[300px] max-h-[450px] object-cover object-top"
@@ -69,6 +77,7 @@ const BookDetails = () => {
               <span className="text-red-500">{data?.download_count}</span>
             </p>
           </div>
+
           <a
             target="_blank"
             href={data?.formats?.["text/html"]}
