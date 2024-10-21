@@ -22,18 +22,28 @@ const Wishlist = () => {
   }
 
   if (error) {
-    return <p className="text-center">Error ...</p>;
+    return (
+      <p className="text-center text-[20px] text-red-500 my-48">
+        Error, Please reload this page ...
+      </p>
+    );
   }
 
   return (
     <>
       <div className="wrapper px-4 xl:px-0">
         <div className="my-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {data?.results.map((book) => (
-              <BookItems key={book?.id} book={book} />
-            ))}
-          </div>
+          {data?.results.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+              {data?.results.map((book) => (
+                <BookItems key={book?.id} book={book} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-[20px] text-green-500 my-32">
+              You have no Wishlist Book ...
+            </p>
+          )}
         </div>
       </div>
     </>
