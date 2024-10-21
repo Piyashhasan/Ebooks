@@ -3,9 +3,9 @@ import BookList from "../../components/BooksList/BookList";
 import SearchByCategory from "../../components/SearchByCategory/SearchByCategory";
 import SearchByInput from "../../components/SearchByInput/SearchByInput";
 import Footer from "../../shared/Footer/Footer";
-import { Paginator } from "primereact/paginator";
-import { useDispatch, useSelector } from "react-redux";
+import Pagination from "../../components/Pagination/Pagination";
 import { useGetAllBooksQuery } from "../../services/booksApi";
+import { useDispatch } from "react-redux";
 import { allBooks } from "../../features/books/bookSlice";
 
 const Books = () => {
@@ -22,39 +22,21 @@ const Books = () => {
   });
 
   // --- pagination functionality ---
+  const [currentUrl, setCurrentUrl] = useState(null);
+  const { data, error, isFetching } = useGetAllBooksQuery(currentUrl);
 
-  // const dispatch = useDispatch();
-  // const { books, pagination } = useSelector((state) => state.books);
-  // const { next, previous } = pagination;
-  // const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
 
-  // const { data, isLoading, isError } = useGetAllBooksQuery({ next, previous });
+  useEffect(() => {
+    if (data) {
+      dispatch(allBooks(data));
+      console.log("pagination data", data);
+    }
+  }, [data, dispatch]);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     dispatch(allBooks(data));
-  //   }
-  // }, [data, dispatch]);
-
-  // useEffect(() => {
-  //   if (previous) {
-  //     setCurrentPage((prev) => prev - 1);
-  //   } else if (next) {
-  //     setCurrentPage((prev) => prev + 1);
-  //   }
-  // }, [next, previous]);
-
-  // const handleNext = () => {
-  //   if (next) {
-  //     dispatch(allBooks({ results: [], next }));
-  //   }
-  // };
-
-  // const handlePrevious = () => {
-  //   if (previous) {
-  //     dispatch(allBooks({ results: [], previous }));
-  //   }
-  // };
+  const fetchBooks = (url) => {
+    setCurrentUrl(url);
+  };
 
   return (
     <>
@@ -76,23 +58,16 @@ const Books = () => {
         {/* --- book search result end --- */}
 
         {/* --- book items start --- */}
-        <BookList searchStatus={searchStatus} topicStatus={topicStatus} />
+        <BookList
+          searchStatus={searchStatus}
+          topicStatus={topicStatus}
+          isLoading={isFetching}
+          error={error}
+        />
         {/* --- book items end --- */}
 
         {/* --- pagination --- */}
-        {/* <div className="flex items-center justify-center gap-5 mb-5">
-          <button
-            className="bg-blue-300"
-            onClick={handlePrevious}
-            disabled={!previous}
-          >
-            Previous
-          </button>
-          <div>{currentPage}</div>
-          <button className="bg-blue-300" onClick={handleNext} disabled={!next}>
-            Next
-          </button>
-        </div> */}
+        <Pagination fetchBooks={fetchBooks} isFetching={isFetching} />
         {/* --- pagination --- */}
       </div>
       {/* --- footer start --- */}

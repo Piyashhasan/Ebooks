@@ -8,10 +8,6 @@ export const booksApi = createApi({
       query: (url) => (url ? url : "/books"),
     }),
 
-    // getAllBooks: builder.query({
-    //   query: (url) => (url ? url : "/books"),
-    // }),
-
     getSingleBook: builder.query({
       query: (id) => `/books/${id}`,
     }),

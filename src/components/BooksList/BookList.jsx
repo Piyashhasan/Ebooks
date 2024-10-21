@@ -1,21 +1,7 @@
-import { memo, useEffect } from "react";
-import { useGetAllBooksQuery } from "../../services/booksApi";
 import BookItem from "../BookItem/BookItem";
-import { useDispatch, useSelector } from "react-redux";
-import { allBooks } from "../../features/books/bookSlice";
+import { useSelector } from "react-redux";
 
-const BookList = ({ searchStatus, topicStatus }) => {
-  // --- fetch all books from api ---
-  const { data, error, isLoading } = useGetAllBooksQuery();
-
-  // --- dispatch action ---
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (data?.results) {
-      dispatch(allBooks(data));
-    }
-  }, [data, dispatch]);
-
+const BookList = ({ searchStatus, topicStatus, isLoading, error }) => {
   // --- book get from store ---
   const { books } = useSelector((state) => state.books);
 
@@ -42,4 +28,4 @@ const BookList = ({ searchStatus, topicStatus }) => {
   );
 };
 
-export default memo(BookList);
+export default BookList;

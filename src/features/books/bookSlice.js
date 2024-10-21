@@ -7,6 +7,7 @@ const initialState = {
     count: 0,
     next: null,
     previous: null,
+    currentPage: 1,
   },
 };
 
@@ -17,14 +18,17 @@ export const bookSlice = createSlice({
   reducers: {
     allBooks: (state, action) => {
       state.books = action?.payload?.results;
-      state.pagination.count = action.payload.count;
+      state.pagination.count = action?.payload?.count;
       state.pagination.next = action.payload?.next;
       state.pagination.previous = action.payload.previous;
+    },
+    setCurrentPage: (state, action) => {
+      state.pagination.currentPage = action.payload; // Manually set page if needed
     },
   },
 });
 
 // --- action ---
-export const { allBooks } = bookSlice.actions;
+export const { allBooks, setCurrentPage } = bookSlice.actions;
 
 export default bookSlice.reducer;
