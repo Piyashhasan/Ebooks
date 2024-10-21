@@ -30,7 +30,6 @@ const Books = () => {
   useEffect(() => {
     if (data) {
       dispatch(allBooks(data));
-      console.log("pagination data", data);
     }
   }, [data, dispatch]);
 
