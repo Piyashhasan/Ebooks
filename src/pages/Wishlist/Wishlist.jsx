@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BookItems from "../../components/BookItem/BookItem";
 import { useGetBooksByIdsQuery } from "../../services/booksApi";
-import Footer from "../../shared/Footer/Footer";
+import WishlistSkeleton from "../../shared/Skeleton/WishlistSkeleton";
 
 const Wishlist = () => {
   const [wishListBooks, setWishListBooks] = useState([]);
@@ -18,7 +18,7 @@ const Wishlist = () => {
   });
 
   if (isLoading) {
-    return <p className="text-center">Loading ...</p>;
+    return <WishlistSkeleton />;
   }
 
   if (error) {
@@ -35,9 +35,6 @@ const Wishlist = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div>
-        <Footer />
       </div>
     </>
   );

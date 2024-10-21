@@ -1,17 +1,19 @@
+import { memo } from "react";
 import BookItem from "../BookItem/BookItem";
 import { useSelector } from "react-redux";
+import BookListSkeleton from "../../shared/Skeleton/BookListSkeleton";
 
 const BookList = ({ searchStatus, topicStatus, isLoading, error }) => {
   // --- book get from store ---
   const { books } = useSelector((state) => state.books);
 
   if (isLoading || searchStatus.loading || topicStatus.loading) {
-    return <p className="text-center text-[20px]">Loading .....</p>;
+    return <BookListSkeleton />;
   }
 
   if (error || searchStatus.error || topicStatus.error) {
     return (
-      <p className="text-center text-[20px]">
+      <p className="text-center text-[20px] text-red-500 my-48">
         Error, Please reload this page .....
       </p>
     );
@@ -28,4 +30,4 @@ const BookList = ({ searchStatus, topicStatus, isLoading, error }) => {
   );
 };
 
-export default BookList;
+export default memo(BookList);

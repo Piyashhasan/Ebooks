@@ -30,7 +30,7 @@ const BookItem = ({ book }) => {
   };
 
   return (
-    <div key={book?.id} className="p-3 shadow-lg rounded-md border  relative">
+    <div key={book?.id} className="p-3 shadow-lg rounded-md border relative">
       <Link to={`/books/${book?.id}`}>
         <div className="flex justify-center">
           <img
