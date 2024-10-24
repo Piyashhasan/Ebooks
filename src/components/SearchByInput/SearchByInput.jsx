@@ -9,7 +9,7 @@ const SearchByInput = ({ setSearchStatus }) => {
   const [triggerSearch, setTriggerSearch] = useState(false);
 
   // --- fetch books based on search input from rtk query ---
-  const { data, error, isLoading } = useSearchBooksQuery(trimText, {
+  const { data, error, isFetching } = useSearchBooksQuery(trimText, {
     skip: !triggerSearch,
   });
 
@@ -38,13 +38,16 @@ const SearchByInput = ({ setSearchStatus }) => {
       setTriggerSearch(false);
       setSearchStatus({ loading: false, error: false });
     }
-    if (isLoading) {
+  }, [data, dispatch, setSearchStatus]);
+
+  useEffect(() => {
+    if (isFetching) {
       setSearchStatus((prev) => ({ ...prev, loading: true }));
     }
     if (error) {
       setSearchStatus((prev) => ({ ...prev, error: true }));
     }
-  }, [data, dispatch, setSearchStatus, isLoading, error]);
+  }, [setSearchStatus, isFetching, error]);
 
   return (
     <form onSubmit={handleSearch}>
