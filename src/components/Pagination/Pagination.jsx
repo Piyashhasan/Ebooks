@@ -44,7 +44,7 @@ const Pagination = ({ fetchBooks, isFetching }) => {
       <span className="font-bold">
         Page:{" "}
         <span className="text-red-500">
-          {pagination.currentPage} of {Math.floor(pagination.count / 32)}
+          {pagination.currentPage} of {Math.ceil(pagination.count / 32)}
         </span>
       </span>
       <button

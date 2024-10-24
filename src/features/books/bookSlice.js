@@ -23,13 +23,16 @@ export const bookSlice = createSlice({
       state.pagination.previous = action.payload.previous;
     },
     setCurrentPage: (state, action) => {
-      state.pagination.currentPage = action.payload; // Manually set page if needed
+      state.pagination.currentPage = action.payload;
+    },
+    resetCurrentPage: (state) => {
+      state.pagination.currentPage = 1;
     },
   },
 });
 
 // --- action export ---
-export const { allBooks, setCurrentPage } = bookSlice.actions;
+export const { allBooks, setCurrentPage, resetCurrentPage } = bookSlice.actions;
 
 // --- export reducer ---
 export default bookSlice.reducer;
